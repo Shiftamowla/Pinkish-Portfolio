@@ -1,0 +1,57 @@
+{% extends 'mybase.html' %}
+{% block body %}
+
+<!-- Section Start: Blog Header -->
+<section class="px-40 py-20 bg-[#f3e1e8]">
+    <div class="text-center">
+        <h2 class="text-4xl font-bold text-[#ff819c]">My Blog</h2>
+        <p class="text-xl text-[#929292] mt-5">Explore articles on programming, technology, and my personal experiences.</p>
+    </div>
+</section>
+
+<!-- Section Start: Blog Posts -->
+<section class="px-40 py-20 bg-[#fff]">
+    <div class="text-center">
+        <h3 class="text-3xl font-bold text-[#ff819c]">Latest Posts</h3>
+        <p class="text-lg text-[#929292] mt-5">Catch up with my latest insights, tutorials, and stories.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
+        {% for post in blog_posts %}
+        <!-- Blog Post -->
+        <div class="bg-[#f9f0f3] p-6 rounded-lg shadow-lg hover:scale-105 transition-all duration-300">
+            <img src="{{ post.image_url }}" alt="{{ post.title }}" class="w-full h-40 object-cover rounded-md">
+            <h4 class="text-2xl font-bold text-[#ff819c] mt-4">{{ post.title }}</h4>
+            <p class="text-[#929292] mt-2">{{ post.excerpt }}</p>
+            <a href="/blog/{{ post.slug }}" class="text-[#e9bf93] mt-4 inline-block hover:text-[#ff81a1]">Read More</a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Section Start: Blog Categories -->
+<section class="px-40 py-20 bg-[#f9f0f3]">
+    <div class="text-center">
+        <h3 class="text-3xl font-bold text-[#ff819c]">Blog Categories</h3>
+        <p class="text-lg text-[#929292] mt-5">Find articles by topics you’re most interested in.</p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-6 mt-10">
+        {% for category in categories %}
+        <a href="/blog/category/{{ category.slug }}" class="bg-[#fff] px-6 py-3 rounded-lg shadow-lg text-[#ff819c] hover:bg-[#ff819c] hover:text-white transition-all">
+            {{ category.name }}
+        </a>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Section Start: Call to Action -->
+<section class="px-40 py-20 bg-[#fff] text-center">
+    <h3 class="text-3xl font-bold text-[#ff819c]">Have a Topic in Mind?</h3>
+    <p class="text-lg text-[#929292] mt-5">Feel free to reach out if you'd like me to cover a specific topic!</p>
+    <a href="/contact" class="mt-10 inline-block bg-[#ff819c] text-white px-8 py-3 rounded-full hover:bg-[#e06a84] transition">
+        Suggest a Topic
+    </a>
+</section>
+
+{% endblock body %}

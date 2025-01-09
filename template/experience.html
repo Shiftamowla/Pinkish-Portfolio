@@ -1,0 +1,77 @@
+{% extends 'mybase.html' %}
+{% block body %}
+
+<!-- Section Start: Experience Header -->
+<section class="px-40 py-20 bg-[#f3e1e8]">
+    <div class="text-center">
+        <h2 class="text-4xl font-bold text-[#ff819c]">My Professional Experience</h2>
+        <p class="text-xl text-[#929292] mt-5">Explore my journey, roles, and contributions over the years.</p>
+    </div>
+</section>
+
+<!-- Section Start: Work Experience -->
+<section class="px-40 py-20 bg-[#fff]">
+    <div class="text-center">
+        <h3 class="text-3xl font-bold text-[#ff819c]">Work Experience</h3>
+        <p class="text-lg text-[#929292] mt-5">Here’s a timeline of my professional roles and responsibilities.</p>
+    </div>
+
+    <div class="space-y-10 mt-10">
+        {% for experience in experiences %}
+        <div class="bg-[#f9f0f3] p-6 rounded-lg shadow-lg hover:scale-105 transition-all duration-300">
+            <h4 class="text-2xl font-bold text-[#ff819c]">{{ experience.title }}</h4>
+            <p class="text-lg text-[#929292] mt-1">{{ experience.company }} — <span class="italic">{{ experience.duration }}</span></p>
+            <ul class="list-disc list-inside text-[#929292] mt-4">
+                {% for responsibility in experience.responsibilities %}
+                <li>{{ responsibility }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Section Start: Skills -->
+<section class="px-40 py-20 bg-[#f9f0f3]">
+    <div class="text-center">
+        <h3 class="text-3xl font-bold text-[#ff819c]">Key Skills</h3>
+        <p class="text-lg text-[#929292] mt-5">A showcase of my most valuable skills and expertise.</p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mt-10 text-center">
+        {% for skill in skills %}
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:bg-[#ff819c] hover:text-white transition-all">
+            <p class="font-bold text-lg">{{ skill }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Section Start: Education -->
+<section class="px-40 py-20 bg-[#fff]">
+    <div class="text-center">
+        <h3 class="text-3xl font-bold text-[#ff819c]">Education</h3>
+        <p class="text-lg text-[#929292] mt-5">A summary of my academic achievements and qualifications.</p>
+    </div>
+
+    <div class="space-y-10 mt-10">
+        {% for edu in education %}
+        <div class="bg-[#f9f0f3] p-6 rounded-lg shadow-lg hover:scale-105 transition-all duration-300">
+            <h4 class="text-2xl font-bold text-[#ff819c]">{{ edu.degree }}</h4>
+            <p class="text-lg text-[#929292] mt-1">{{ edu.institution }} — <span class="italic">{{ edu.year }}</span></p>
+            <p class="text-[#929292] mt-4">{{ edu.details }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Section Start: Call to Action -->
+<section class="px-40 py-20 bg-[#f3e1e8] text-center">
+    <h3 class="text-3xl font-bold text-[#ff819c]">Let’s Collaborate!</h3>
+    <p class="text-lg text-[#929292] mt-5">I’m open to exciting opportunities and collaborations. Let’s work together!</p>
+    <a href="/contact" class="mt-10 inline-block bg-[#ff819c] text-white px-8 py-3 rounded-full hover:bg-[#e06a84] transition">
+        Get in Touch
+    </a>
+</section>
+
+{% endblock body %}
