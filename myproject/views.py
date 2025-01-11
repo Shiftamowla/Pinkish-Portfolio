@@ -12,57 +12,203 @@ from django.db.models import Q
 
 
 
+@login_required
 def base(req):
 
     return render (req, 'base.html')
 
+@login_required
 def mybase(req):
 
     return render (req, 'mybase.html')
 
+@login_required
 def home(req):
 
     return render (req, 'home.html')
 
+@login_required
 def skills(req):
 
     return render (req, 'skills.html')
 
+@login_required
 def experience(req):
 
     return render (req, 'experience.html')
+
+@login_required
 def project(req):
 
     return render (req, 'project.html')
 
+@login_required
 def blog(req):
 
     return render (req, 'blog.html')
 
-
+@login_required
 def image_gallery(req):
 
     return render (req, 'image_gallery.html')
 
+@login_required
 def one_gelary(req):
     data=photograph.objects.all()
 
     return render (req, '1nogelary.html', {"data":data})
 
+
+@login_required
 def two_gelary(req):
     data=sports.objects.all()
 
     return render (req, '2nogelary.html', {"data":data})
 
+@login_required
 def three_gelary(req):
     data=food.objects.all()
 
     return render (req, '3nogelary.html', {"data":data})
 
+@login_required
 def four_gelary(req):
     data=work.objects.all()
 
     return render (req, '4nogelary.html', {"data":data})
+
+@login_required
+def single(req,id):
+    current_user=req.user
+    pic=photograph.objects.filter(id=id)
+    return render (req, 'single.html', {"pic":pic})
+
+@login_required
+def single2(req,id):
+    current_user=req.user
+    pic=sports.objects.filter(id=id)
+    return render (req, 'single2.html', {"pic":pic})
+
+
+@login_required
+def single3(req,id):
+    current_user=req.user
+    pic=food.objects.filter(id=id)
+    return render (req, 'single3.html', {"pic":pic})
+
+@login_required
+def single4(req,id):
+    current_user=req.user
+    pic=work.objects.filter(id=id)
+    return render (req, 'single4.html', {"pic":pic})
+
+
+
+@login_required
+def AddPhotograph1(req):
+    current_user = req.user
+
+    # Only allow users with specific conditions to add photographs
+    if req.method == 'POST':
+        # Get form data and uploaded file
+        pic = req.FILES.get('pic')
+        title = req.POST.get('title')
+        description = req.POST.get('description')
+        tags = req.POST.get('tags')
+
+        # Save the photograph object
+        pic = photograph(
+            title=title,
+            description=description,
+            pic=pic,
+            tags=tags,
+        )
+        pic.save()
+
+        return redirect('one_gelary')  # Redirect to the gallery page after saving
+
+    return render(req, '1addpic.html')  
+
+
+@login_required
+def AddPhotograph2(req):
+    current_user = req.user
+
+    # Only allow users with specific conditions to add photographs
+    if req.method == 'POST':
+        # Get form data and uploaded file
+        pic = req.FILES.get('pic')
+        title = req.POST.get('title')
+        description = req.POST.get('description')
+        tags = req.POST.get('tags')
+
+        # Save the photograph object
+        pic = sports(
+            title=title,
+            description=description,
+            pic=pic,
+            tags=tags,
+        )
+        pic.save()
+
+        return redirect('two_gelary')  # Redirect to the gallery page after saving
+
+    return render(req, '2addpic.html')  
+
+
+
+@login_required
+def AddPhotograph3(req):
+    current_user = req.user
+
+    # Only allow users with specific conditions to add photographs
+    if req.method == 'POST':
+        # Get form data and uploaded file
+        pic = req.FILES.get('pic')
+        title = req.POST.get('title')
+        description = req.POST.get('description')
+        tags = req.POST.get('tags')
+
+        # Save the photograph object
+        pic = food(
+            title=title,
+            description=description,
+            pic=pic,
+            tags=tags,
+        )
+        pic.save()
+
+        return redirect('three_gelary')  # Redirect to the gallery page after saving
+
+    return render(req, '3addpic.html')  
+
+
+
+@login_required
+def AddPhotograph4(req):
+    current_user = req.user
+
+    # Only allow users with specific conditions to add photographs
+    if req.method == 'POST':
+        # Get form data and uploaded file
+        pic = req.FILES.get('pic')
+        title = req.POST.get('title')
+        description = req.POST.get('description')
+        tags = req.POST.get('tags')
+
+        # Save the photograph object
+        pic = work(
+            title=title,
+            description=description,
+            pic=pic,
+            tags=tags,
+        )
+        pic.save()
+
+        return redirect('four_gelary')  # Redirect to the gallery page after saving
+
+    return render(req, '4addpic.html')  
+
 
 
 

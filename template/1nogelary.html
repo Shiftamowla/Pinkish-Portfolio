@@ -18,7 +18,7 @@
             <p class="text-[#929292] mt-2 leading-relaxed text-justify break-words max-h-32 overflow-y-auto">
                 {{ i.description }}
             </p>
-            <a href="#" class="text-[#e9bf93] mt-4 inline-block hover:text-[#ff81a1]">
+            <a href="{% url 'single' i.id %}" class="text-[#e9bf93] mt-4 inline-block hover:text-[#ff81a1]">
                 Read more about {{ i.title }}
             </a>
         </div>
@@ -28,13 +28,11 @@
     <br><br><br>
 
     <!-- Add Image Button -->
-    <div class="flex items-center justify-center">
-        <button class="bg-[#f4c18a] text-white font-bold py-2 px-4 rounded-sm w-40 h-10 hover:scale-105 hover:shadow-lg transition-all duration-300 relative">
-            <a href="#" target="_blank" class="w-full h-full flex items-center justify-center">Add Image</a>
-            <span class="absolute inset-0 bg-gradient-to-r opacity-30 rounded-sm"></span>
-        </button>
+    <div class="flex items-center justify-center mt-10">
+        <a href="{% url 'AddPhotograph1' %}" class="bg-[#ffca91] text-white font-bold py-2 px-6 rounded-sm hover:scale-105 hover:shadow-lg transition-all duration-300">
+            Add Image
+        </a>
     </div>
-    
 </section>
 
 {% endblock body %}
